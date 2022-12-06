@@ -1,0 +1,218 @@
+body {
+  
+    margin: 3rem 20rem;
+    font-family: system-ui;
+}
+h1 {
+    font-size: 1.6rem;
+    margin-bottom: 200px;
+}
+
+h2 {
+    display: none;
+}
+h3 {
+    min-width: 112px;
+    font-style: italic;
+    font-size: 1rem;
+    border-right: 1px solid black;
+    margin-right: 1rem;
+}
+
+h4 {
+    color: rgb(26, 178, 110);
+}
+
+p {
+    font-size: 0.8rem;
+}
+
+section {
+    display: flex;
+}
+
+header img {
+    height: 200px;
+    margin-left: 800px;
+    transform:rotate(20deg);
+}
+
+header figure {
+    width: 2px
+}
+
+header div {
+    display: flex;
+    height: 70px;
+    border-bottom: solid grey;
+}
+
+#wraper div {
+    width: 1000px;
+    display: flex;
+}
+
+#about h3 {
+    display: none;
+}
+
+#about p {
+    font-style: italic;
+    color: gray;
+    width: 500px;
+    margin-bottom: 90px;
+}
+
+
+
+#competencies h3 {
+    
+    grid-area: A ;
+    border-right: 1px solid black;
+    width: 100px;
+    height: 100px;
+    margin: 0;
+}
+
+.skills {
+    display: flex;
+    color: white;
+
+}
+
+.skills-primary {
+    
+    font-size: 1.2rem;
+
+}
+
+.skills-secondary {
+    
+    font-size: 0.8rem;
+    
+}
+
+.skill {
+    background-color: rgb(26, 178, 110);
+    padding: 3px;
+    height: fit-content;
+    margin: 0 0rem 0.6rem 0.6rem;
+    padding: 5px;
+    min-width: 140px;
+}
+
+#experiences{
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-areas: 
+      "A B "
+      "A B ";
+}
+
+#experiences h3 {
+    grid-area: A;
+}
+
+#experiences div{
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-areas: 
+      "A B "
+      "C C ";
+}
+
+#experiences div h4{
+    margin-top: 1rem;
+    grid-area: A;
+}
+
+#experiences div div{
+    display: flex;
+    grid-area: B;
+}
+
+#experiences div p{
+    grid-area: C;
+}
+
+.experience-location{
+    margin-right: 0.5rem;
+}
+.skills-primary [data-skill="5"] ::after{
+    content: " \2605\2605\2605";
+    margin-left: 30px;
+
+}
+.skills-primary [data-skill="3"] ::after{
+    content: " \2605\2605";
+    margin-left: 60px;
+
+}
+.skills-primary [data-skill="1"] ::after{
+    content: " \2605";
+    margin-left: 30px;
+
+}
+.skills-secondary [data-skill="9"] ::after{
+    content: " \2605\2605\2605\2605\2605";
+    margin-left: 40px;
+
+}
+.skills-secondary [data-skill="5"] ::after{
+    content: " \2605\2605\2605";
+    margin-left: 75px;
+
+}
+.skills-secondary [data-skill="7"] ::after{
+    content: " \2605\2605\2605\2605";
+    margin-left: 30px;
+
+}
+.experience-details{
+    margin-left: 400px;
+    font-weight: 300;
+}
+#contact dl{
+    width: 50px;
+    height: 70px;
+    align-self: center;
+
+}
+
+.contact-email{
+    background-image: url(../images/email.png);
+    background-repeat: no-repeat;
+    color: transparent;
+    background-size: 100%;
+}
+.contact-skype, .contact-value{
+    display: none;
+}
+.contact-phone{
+    background-image: url(../images/phone.png);
+    background-repeat: no-repeat;
+    color: transparent;
+    background-size: 100%;
+}
+.contact-github{
+    background-image: url(../images/github.png);
+    background-repeat: no-repeat;
+    color: transparent;
+    background-size: 100%;
+}
+.contact-facebook{
+    background-image: url(../images/facebook.png);
+    background-repeat: no-repeat;
+    color: transparent;
+    background-size: 100%;
+}
+.contacts{
+    display: flex;
+}
+
+ 
+
+
+
+
