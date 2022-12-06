@@ -185,6 +185,49 @@ red 70% , silver 5%);
     border-bottom: 1px  rgb(128, 123, 123)  solid;
     padding-bottom: 5px;
    } 
+   @media screen and (max-width: 480px) {
+    .contact-skype ::after{
+      margin-left: 80px;
+      display: inline-block;
+      content: "first last";
+    
+      color: black;
+    }
+      
+    
+    
+    header div{
+      height: 270px;
+      flex-direction: column;
+    }
+    hgroup{
+      margin-left: 30px;
+    }
+    
+    .contact{
+      
+      display: flex;
+      position: absolute;
+      margin-top: 148rem;
+      width: 18rem;
+      height: 6rem;
+      margin-left: 0rem;
+      background: linear-gradient(to right, 
+   red 40% , rgb(226, 220, 220) 5%);
+     }
+     #contact h3{
+     
+      margin-left:2rem;
+      display: contents;
+      color: black;
+      
+     }
+    }
+     
+      
+     
+
+  
    
    
    
