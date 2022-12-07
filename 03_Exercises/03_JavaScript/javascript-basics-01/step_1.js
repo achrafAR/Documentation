@@ -1,2 +1,2 @@
-var name = "Achraf";
-alert(name);
+var user = "Achraf";
+alert(user);
