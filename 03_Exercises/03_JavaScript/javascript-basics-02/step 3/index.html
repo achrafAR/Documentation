@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="js2step3.js"></script>
   <meta charset="utf-8">
   <title>Step 3</title>
 </head>
 <body>
   <form>
-    <label for="name">Your name  : </label><input type="text" name="name" value="" id="name"/>
+    <label for="name">Your name  : </label><input onchange="change(this.value)" type="text" name="name" value="" id="name"/>
   </form>
+  <div id="result" style="height:60px;width:100px;border:2px solid #999"></div>
 </body>
 </html>
