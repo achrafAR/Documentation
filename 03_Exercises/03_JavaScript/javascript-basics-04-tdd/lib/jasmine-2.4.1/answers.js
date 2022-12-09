@@ -4,8 +4,9 @@ const stringSize = text => {
 const replaceCharacterE = text => {
   return text.replace("e", " ");
 };
-const concatString = (text1, text2) => {
-  return text1 + text2;
+const concatString = (text1,text2) => {
+  
+      return text1+text2;
 };
 const showChar5 = text => {
   return text.charAt(4, 5);
