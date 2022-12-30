@@ -88,9 +88,12 @@ function quit(){
  * @returns {void}
  */
 
-// function help(){
-//   console.log('press hello or press "quit or exit" to quit')
-// }
+ function help() {
+
+  console.log(
+    "press\n\n help. To list all possible commands.\n hello. to say hello!\n quit or exit. To quit or exit the application.\n -------------------------"
+  );
+}
 
 // The following line starts the application
 startApp("Achraf Al Rachini")
