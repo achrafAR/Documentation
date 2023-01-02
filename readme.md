@@ -77,7 +77,7 @@ Commit after **each** step.
 5. Add a new command, "help", that lists all the possible commands
 6. commit ("help command")
 7. Document this function like the others (write a comment on top of it that explains what "help" does)
-8. commit ("added jsdoc for help") 
+8. commit ("") 
 
 If you haven't yet, now would be a good moment to push
 

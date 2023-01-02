@@ -34,11 +34,13 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
+
+
   if (text === 'quit\n' || text === 'exit\n') {
     quit();
   }
-  else if(text === 'hello\n'){
-    hello();
+  else if(text.startsWith('hello')) {
+    hello(text);
   }
   else if(text === 'help\n'){
     help();
@@ -61,14 +63,31 @@ function unknownCommand(c){
 }
 
 
-/**
- * Says hello
- *
- * @returns {void}
- */
-function hello(){
-  console.log('hello!')
+ /**
+* Says hello
+  *
+  * @returns {void}
+  */
+
+function hello(text)
+{    
+
+  text = text.replace('\n', '').trim();
+  let words=text.split(' ');
+  if(words.length == 1 && words[0].length == 5){
+    console.log('hello!')
+  }
+  else if(words.length == 2){
+    console.log('hello ' + words[1] + '!');
+  }
+  else{
+    unknownCommand(text);
+  }
+     
 }
+    
+   
+
 
 
 /**
@@ -83,7 +102,7 @@ function quit(){
 }
 
 /**
- * Says hello
+ * put help to list all possible command
  *
  * @returns {void}
  */
@@ -91,9 +110,16 @@ function quit(){
  function help() {
 
   console.log(
-    "press\n\n help. To list all possible commands.\n hello. to say hello!\n quit or exit. To quit or exit the application.\n -------------------------"
+    "press\n\n help. To list all possible commands.\n hello. to say hello!\n hello name to say hello name!\n quit or exit. To quit or exit the application.\n -------------------------"
   );
 }
+
+
+
+
+
+
+
 
 // The following line starts the application
 startApp("Achraf Al Rachini")
