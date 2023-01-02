@@ -1,3 +1,5 @@
+const { link } = require("fs");
+const { removeListener } = require("process");
 
 /**
  * Starts the application
@@ -33,7 +35,11 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
+
+const tasks = ["eat" , "sleep" , "code" , "repeat"]
+
 function onDataReceived(text) {
+
 
 
   if (text === 'quit\n' || text === 'exit\n') {
@@ -44,6 +50,15 @@ function onDataReceived(text) {
   }
   else if(text === 'help\n'){
     help();
+  }
+  else if(text === "list\n"){
+    printTheList();
+  }
+  else if(text.startsWith("add ")){
+    addList(text);
+  }
+  else if (text.startsWith("remove")){
+    removeList(text);
   }
   else{
     unknownCommand(text);
@@ -62,6 +77,39 @@ function unknownCommand(c){
   console.log('unknown command: "'+c.trim()+'"')
 }
 
+function printTheList(){
+
+  for(let i =  0 ; i<tasks.length ; i++){
+    console.log(i+1 +")" + tasks[i]);
+
+  }
+
+}
+
+function addList(text){
+    let name=text.split(' ');
+    if(name.length == 2 && name[0].length == 3){
+      tasks.push(name[1]);
+    }
+}
+
+function removeList(text){
+
+
+  let words=text.split(' ');
+  if(words.length == 1 && words[0] === 'remove\n'){
+    tasks.splice(-1);
+  }
+  else if(words.length == 2 && words[0] === 'remove'){
+
+    tasks.splice(words[1]-1, 1); 
+
+  }
+  else{
+    unknownCommand(text);
+  }
+}
+
 
  /**
 * Says hello
@@ -77,7 +125,7 @@ function hello(text)
   if(words.length == 1 && words[0].length == 5){
     console.log('hello!')
   }
-  else if(words.length == 2){
+  else if(words.length == 2 && words[0].length == 5){
     console.log('hello ' + words[1] + '!');
   }
   else{
