@@ -36,7 +36,7 @@ function startApp(name){
  * @returns {void}
  */
 
-const tasks = ["eat" , "sleep" , "code" , "repeat"]
+const tasks = ["eat" , "sleep" , "code" , "repeat"];
 
 function onDataReceived(text) {
 
@@ -59,7 +59,12 @@ function onDataReceived(text) {
   }
   else if (text.startsWith("remove")){
     removeList(text);
+
   }
+  else if (text.startsWith("edit")){
+    editList(text);
+  }
+
   else{
     unknownCommand(text);
   }
@@ -101,13 +106,33 @@ function removeList(text){
     tasks.splice(-1);
   }
   else if(words.length == 2 && words[0] === 'remove'){
-
+    if(words[1]>0 && words[1]<=tasks.length){
     tasks.splice(words[1]-1, 1); 
+  }
+    else{
+      console.log('better remove');
+    }
 
   }
   else{
     unknownCommand(text);
   }
+}
+
+function editList(text){
+  let words=text.split(' ');
+
+  if (words.length == 2 && words[0] === 'edit'){
+    tasks.pop();
+    tasks.push(words[1]);
+  }
+  else if(words.length == 3 && words[0] === 'edit' ){
+    let index=parseInt((words[1])-1);
+    tasks.splice(index,1);
+    tasks.splice(index,0,words[2]);
+    tasks.join(" ");
+  }
+
 }
 
 
