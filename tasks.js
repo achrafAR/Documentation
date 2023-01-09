@@ -1,5 +1,21 @@
-const { link } = require("fs");
-const { removeListener } = require("process");
+var fs = require('fs');
+const fileName = process.argv[2] || 'database.json';
+
+var fileContents
+// Read the file contents
+if (fs.existsSync(fileName)) {
+  fileContents = fs.readFileSync(fileName, 'utf8');
+} else {
+  fs.writeFileSync(fileName, "[]")
+  fileContents = fs.readFileSync(fileName, 'utf8');
+}
+// Parse the file contents as JSON
+const tasks = JSON.parse(fileContents);
+
+
+const { title } = require('process');
+const { finished } = require('stream');
+const { isUndefined } = require('util');
 
 /**
  * Starts the application
@@ -36,7 +52,7 @@ function startApp(name){
  * @returns {void}
  */
 
-const tasks = [{name:"eat",done:false},{name:"sleep",done:false},{name:"code",done:false},{name:"repeat",done:false}];
+// const tasks = [{name:"eat",done:false},{name:"sleep",done:false},{name:"code",done:false},{name:"repeat",done:false}];
 
 function onDataReceived(text) {
   test = text.replace("\n"," ").trim().split(' ');
@@ -100,7 +116,7 @@ function printTheList(){
     if(task.done) {
       doneMarker="[✓]";
     }
-    console.log( i + 1 +": " + `${doneMarker}  ${task.name}`)
+    console.log( i + 1 +": " + `${doneMarker}  ${tasks.name}`);
 
   }
 
@@ -110,7 +126,11 @@ function addList(name,done){
   if(!name){
     console.log("error")
   }else{
-    tasks.push({name,done});}
+    tasks.push({name,done});
+    var data = JSON.stringify(tasks, null, 2);
+    fs.writeFileSync(fileName, data, finished);
+  }
+    
 }
 
 function removeList(text){
@@ -142,6 +162,8 @@ function checklist(index){
       console.log("error ")
     }else{
       tasks[index-1].done=true;
+      var data = JSON.stringify(tasks, null, 2);
+    fs.writeFileSync(fileName, data, finished);
     }
 }
 
@@ -150,6 +172,8 @@ function unChecklist(index){
     console.log("error ")
   }else{
     tasks[index-1].done=false;
+    var data = JSON.stringify(tasks, null, 2);
+    fs.writeFileSync(fileName, data, finished);
   }
 }
 
