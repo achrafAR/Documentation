@@ -36,35 +36,45 @@ function startApp(name){
  * @returns {void}
  */
 
-const tasks = ["eat" , "sleep" , "code" , "repeat"];
+const tasks = [{name:"eat",done:false},{name:"sleep",done:false},{name:"code",done:false},{name:"repeat",done:false}];
 
 function onDataReceived(text) {
+  test = text.replace("\n"," ").trim().split(' ');
 
-
-
-  if (text === 'quit\n' || text === 'exit\n') {
+  if (test[0] === 'quit' || test[0] === 'exit') {
     quit();
   }
-  else if(text.startsWith('hello')) {
+  else if(test[0] === 'hello'){
     hello(text);
   }
-  else if(text === 'help\n'){
+  else if(test[0] === 'help'){
     help();
   }
-  else if(text === "list\n"){
+  else if(test[0] === "list"){
     printTheList();
   }
-  else if(text.startsWith("add ")){
-    addList(text);
+  else if(test[0] === "add"){
+   addList(test[1],false);
   }
-  else if (text.startsWith("remove")){
-    removeList(text);
+  else if (test[0] === "remove"){
+    removeList(test[1]);
 
   }
-  else if (text.startsWith("edit")){
-    editList(text);
+  else if (test[0] === "edit"){
+    editList(test[1],test[2]);
   }
-
+  else if (test[0] === 'check'){
+    checklist(test[1]);
+  }
+  else if (test[0] === 'uncheck'){
+    unChecklist(test[1]);
+  }
+  
+  else if (text[0] === "json") {
+    exportToJson();
+  } 
+  else if (text[0] === "read") {
+    read();}
   else{
     unknownCommand(text);
   }
@@ -85,55 +95,64 @@ function unknownCommand(c){
 function printTheList(){
 
   for(let i =  0 ; i<tasks.length ; i++){
-    console.log(i+1 +")" + tasks[i]);
+    const task = tasks[i];
+    let doneMarker = '[ ]';
+    if(task.done) {
+      doneMarker="[✓]";
+    }
+    console.log( i + 1 +": " + `${doneMarker}  ${task.name}`)
 
   }
 
 }
 
-function addList(text){
-    let name=text.split(' ');
-    if(name.length == 2 && name[0].length == 3){
-      tasks.push(name[1]);
-    }
+function addList(name,done){
+  if(!name){
+    console.log("error")
+  }else{
+    tasks.push({name,done});}
 }
 
 function removeList(text){
-
-
-  let words=text.split(' ');
-  if(words.length == 1 && words[0] === 'remove\n'){
-    tasks.splice(-1);
+  if(!text){
+ tasks.splice(-1);}
+ else if(text>tasks.length){
+  console.log("this number not exist") 
+  }else{
+    tasks.splice(text-1,1);
   }
-  else if(words.length == 2 && words[0] === 'remove'){
-    if(words[1]>0 && words[1]<=tasks.length){
-    tasks.splice(words[1]-1, 1); 
+   
+}
+
+function editList(test1,test2){
+  if(!test1){
+    console.log("error");
   }
-    else{
-      console.log('better remove');
+  else if(!test2){
+    tasks[tasks.length-1].name = test1;
+  }
+  else if(test1>0 && test1<tasks.length){
+    tasks[test1-1].name=test2;
+  }
+
+}
+
+function checklist(index){
+    if(!index){
+      console.log("error ")
+    }else{
+      tasks[index-1].done=true;
     }
+}
 
-  }
-  else{
-    unknownCommand(text);
+function unChecklist(index){
+  if(!index){
+    console.log("error ")
+  }else{
+    tasks[index-1].done=false;
   }
 }
 
-function editList(text){
-  let words=text.split(' ');
-
-  if (words.length == 2 && words[0] === 'edit'){
-    tasks.pop();
-    tasks.push(words[1]);
-  }
-  else if(words.length == 3 && words[0] === 'edit' ){
-    let index=parseInt((words[1])-1);
-    tasks.splice(index,1);
-    tasks.splice(index,0,words[2]);
-    tasks.join(" ");
-  }
-
-}
 
 
  /**
@@ -144,18 +163,17 @@ function editList(text){
 
 function hello(text)
 {    
-
-  text = text.replace('\n', '').trim();
-  let words=text.split(' ');
-  if(words.length == 1 && words[0].length == 5){
-    console.log('hello!')
+  let words = text.split(" ");
+  if(!words[1]){
+    console.log("hello!")
   }
-  else if(words.length == 2 && words[0].length == 5){
-    console.log('hello ' + words[1] + '!');
+  else if(words.length<=2){
+    console.log("hello "+words[1].trim()+"!");
   }
   else{
-    unknownCommand(text);
+    unknownCommand(text)
   }
+ 
      
 }
     
