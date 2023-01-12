@@ -73,8 +73,14 @@ app.get('/movies/edit', (req, res) => {
 });
 
 app.get('/movies/delete', (req, res) => {
-    const dlt = req.params.delete;
-    res.send({status:200, message:"delete Movies"});
+    const index = req.query.id;
+    if(index<1 || index>movies.length){
+        res.send({status:404, error:true, message:`the movie ${index} does not exist`});
+    }else{
+        movies.splice(index-1,1);
+        res.send({status:200, message:movies});
+
+    }
 });
 
 app.get('/movies/read/by-date', (req, res) => {
