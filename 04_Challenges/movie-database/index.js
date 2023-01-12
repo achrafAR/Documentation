@@ -45,8 +45,21 @@ app.get('/search', (req, res) => {
 });
 
 app.get('/movies/add', (req, res) => {
-    const add = req.params.add;
-    res.send({status:200, message:"add Movies"});
+    const t = req.query.title;
+    const y = req.query.year;
+    const r = req.query.rating;
+    const addMovie = {title : t , year : y , rating : r || 4};
+    if(!t || !y || y>9999 || y.length !=4 )
+    {
+    res.send({status:403, error:true, message:'you cannot create a movie without providing a title and a year'});
+    }
+    else
+    {
+        movies.push(addMovie);
+        res.send({status:200, message:movies});
+    }
+      
+    
 });
 
 app.get('/movies/get', (req, res) => {
