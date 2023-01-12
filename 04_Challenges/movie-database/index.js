@@ -67,9 +67,28 @@ app.get('/movies/get', (req, res) => {
     res.send({status:200, data:read});
 });
 
-app.get('/movies/edit', (req, res) => {
-    const edit = req.params.edit;
-    res.send({status:200, message:"edit Movies"});
+
+
+app.get('/movies/edit/:index?', (req, res) => {
+    const index = req.params.index;
+    const newTitle = req.query.title;
+    const newRating = req.query.rating;
+    const newYear = req.query.year;
+    if (newTitle != null)
+    {
+        movies[index-1].title = newTitle;
+    }
+    if (newRating != null)
+    {
+    movies[index-1].rating = newRating;
+    }
+    if(newYear != null)
+    {
+        movies[index-1].year = newYear;
+
+    }
+
+    res.send({status:200, message:movies});
 });
 
 app.get('/movies/delete', (req, res) => {
