@@ -8,14 +8,31 @@ app.get('/', function(req, res){
 })
 
 app.get('/test', function(req, res){
-    res.status(200).json({status:200, message:"ok"});
+    res.send({status:200, message:"ok"});
 })
 
 app.get('/time', function(req, res){
     let now = new Date();
     let hour = now.getHours();
     let minutes = now.getMinutes();
-    res.status(200).json({status:200, message:`${hour}:${minutes}`});
+    res.send({status:200, message:`${hour}:${minutes}`});
     
 });
+
+app.get('/hello/:id?', (req, res) => {
+    const id = req.params.id;
+    res.send({status:200, message:`Hello, ${id}`});
+});
+
+app.get('/search', (req, res) => {
+    const s = req.query.s;
+    if(!s){
+        res.send({status:500, error:true, message:"you have to provide a search"});
+    }
+    else{
+    res.send({status:200, message:'ok', data: `${s}`});
+    }
+});
+
+
 
