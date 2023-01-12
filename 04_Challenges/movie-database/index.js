@@ -85,6 +85,18 @@ app.get('/movies/read/by-title', (req, res) => {
 });
 
 
+app.get('/movies/read/id/:index', (req, res) => {
+    const index=req.params.index;
+    const get=movies.map(movies => movies.title);
+    if(index>0 && index<=movies.length){
+        res.send({status:200, data:get[index-1]})
+    }else{
+        res.send({status:404, error:true, message:`the movie  ${index} does not exist`});
+    }
+    
+});
+
+
 
 
 
