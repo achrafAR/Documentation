@@ -1,3 +1,13 @@
+
+const movies = [
+    { title: 'Jaws', year: 1975, rating: 8 },
+    { title: 'Avatar', year: 2009, rating: 7.8 },
+    { title: 'Brazil', year: 1985, rating: 8 },
+    { title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 }
+]
+
+
+
 const express = require('express');
 const app = express();
 
@@ -32,6 +42,26 @@ app.get('/search', (req, res) => {
     else{
     res.send({status:200, message:'ok', data: `${s}`});
     }
+});
+
+app.get('/movies/add', (req, res) => {
+    const add = req.params.add;
+    res.send({status:200, message:"add Movies"});
+});
+
+app.get('/movies/get', (req, res) => {
+    const read = movies.map(movies => movies.title);
+    res.send({status:200, data:read});
+});
+
+app.get('/movies/edit', (req, res) => {
+    const edit = req.params.edit;
+    res.send({status:200, message:"edit Movies"});
+});
+
+app.get('/movies/delete', (req, res) => {
+    const dlt = req.params.delete;
+    res.send({status:200, message:"delete Movies"});
 });
 
 
